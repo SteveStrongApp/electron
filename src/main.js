@@ -82,7 +82,7 @@ console.log(methods );
 let actions = {
   password: methods.google,
   info: methods.bing,
-  status: methods.nih,
+  status: methods.thePolice,
   showdrive: cmds.hello,
   mapdrive: methods.execute,
   support: methods.shell,

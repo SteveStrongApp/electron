@@ -56,14 +56,29 @@ let methods = {
     shell: function() {
         shell.openExternal('http://electron.atom.io')
     },
+    thePolice: function() {
+        var cmd = 'docker run -d -p4000:3000 datalift/police.datalift'
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error}`);
+                return;
+            }
+            setTimeout(_=> {
+                shell.openExternal('http://localhost:4000/')
+            }, 1000)
+           
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+        });
+    },
     execute: function() {
         exec('dir *.*', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
+            if (error) {
+                console.error(`exec error: ${error}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
         });
     }
 }
