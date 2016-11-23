@@ -6,7 +6,9 @@ const electron = require('electron')
 
 const { ipcRenderer} = electron;
 
-const buttons = ["password","info","status","showdrive","mapdrive","support","feedback","exit"]
+const buttons = Array.from(document.querySelectorAll('.btn')).map( x=> {
+    return x.id;
+})
 
 buttons.forEach( tag => {
     document.getElementById(tag).addEventListener('click', function() {

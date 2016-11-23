@@ -1,14 +1,25 @@
 const electron = require('electron')
+const shared = require('./shared.js')
 
 // Module to control application life.
 // Module to create native browser window.
 const { app, BrowserWindow, ipcMain } = electron;
+const { methods } = shared;
 
 //automate reloading of app to help development
 require("electron-reload")(__dirname);
 
 const path = require('path')
 const url = require('url')
+
+let cmds = {};
+
+if ( process.platform == 'darwin'){
+  cmds = require('./macCmd')
+}
+if ( process.platform == 'win32'){
+  cmds = require('./winCmd')
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -66,37 +77,16 @@ app.on('activate', function () {
   }
 });
 
-function openUrl(url){
-    let child = new BrowserWindow({modal: false, show: false})
-
-    child.once('ready-to-show', () => {
-      child.show()
-    });
-    child.loadURL(url)
-}
+console.log(methods ); 
 
 let actions = {
-  password: function() { 
-    openUrl('https://www.google.com')
-  },
-  info: function() { 
-    openUrl('https://www.bing.com')
-  },
-  status: function() { 
-    openUrl('https://www.nih.gov')
-  },
-  showdrive: function() { 
-    console.log("yes" ); 
-  },
-  mapdrive: function() { 
-    console.log("yes" ); 
-  },
-  support: function() { 
-    console.log("yes" ); 
-  },
-  feedback: function() { 
-    openUrl('https://github.com')
-  },
+  password: methods.google,
+  info: methods.bing,
+  status: methods.nih,
+  showdrive: cmds.hello,
+  mapdrive: methods.execute,
+  support: methods.shell,
+  feedback: methods.github,
   exit: function() { app.exit(); },
 }
 

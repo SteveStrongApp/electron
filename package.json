@@ -10,13 +10,13 @@
   },
   "author": "BAH",
   "devDependencies": {
-     "electron": "^1.4.1",
+    "electron": "^1.4.1",
     "electron-packager": "^8.3.0",
     "rimraf": "^2.5.4"
   },
-  "dependencies": { 
+  "dependencies": {
+    "bootstrap": "^3.3.7",
     "electron-reload": "^1.0.3",
     "font-awesome": "^4.7.0"
   }
 }
-
