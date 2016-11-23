@@ -66,15 +66,37 @@ app.on('activate', function () {
   }
 });
 
+function openUrl(url){
+    let child = new BrowserWindow({modal: false, show: false})
+
+    child.once('ready-to-show', () => {
+      child.show()
+    });
+    child.loadURL(url)
+}
 
 let actions = {
-  password: function() { console.log("yes" ); },
-  info: function() { console.log("yes" ); },
-  status: function() { console.log("yes" ); },
-  showdrive: function() { console.log("yes" ); },
-  mapdrive: function() { console.log("yes" ); },
-  support: function() { console.log("yes" ); },
-  feedback: function() { console.log("yes" ); },
+  password: function() { 
+    openUrl('https://www.google.com')
+  },
+  info: function() { 
+    openUrl('https://www.bing.com')
+  },
+  status: function() { 
+    openUrl('https://www.nih.gov')
+  },
+  showdrive: function() { 
+    console.log("yes" ); 
+  },
+  mapdrive: function() { 
+    console.log("yes" ); 
+  },
+  support: function() { 
+    console.log("yes" ); 
+  },
+  feedback: function() { 
+    openUrl('https://github.com')
+  },
   exit: function() { app.exit(); },
 }
 
