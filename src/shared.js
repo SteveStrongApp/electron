@@ -4,9 +4,12 @@ const childProcess = require('child_process')
 
 // Module to control application life.
 // Module to create native browser window.
-const { BrowserWindow, shell } = electron;
+const { BrowserWindow, shell, systemPreferences } = electron;
 
 const { exec, spawn } = childProcess;
+
+
+console.log( systemPreferences);
 
 const openCmds = {
     darwin: 'open',
